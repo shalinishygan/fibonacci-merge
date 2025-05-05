@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Fibonacci Merge</title> <!-- CHANGED -->
+
+  <link href="style/main.css" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="description" content="Combine consecutive Fibonacci numbers! Reach 144."> <!-- CHANGED -->
+
+</head>
+<body>
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">Fibonacci Merge</h1> <!-- CHANGED -->
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+
+    <div class="above-game">
+       <!-- CHANGED Intro Text -->
+      <p class="game-intro">Combine <strong>consecutive Fibonacci</strong> numbers! Reach <strong>144</strong>! <br>(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144)</p>
+      <a class="restart-button">New Game</a>
+    </div>
+
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+	        <a class="keep-playing-button">Keep going</a>
+          <a class="retry-button">Try again</a>
+        </div>
+      </div>
+
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+
+      <div class="tile-container">
+        <!-- Tiles will be added here by JS -->
+      </div>
+    </div>
+
+    <p class="game-explanation">
+      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> (or <strong>swipe</strong> on touch devices) to move the tiles.
+      <br>Tiles slide as far as possible.
+      <!-- CHANGED Explanation -->
+      <br>If two tiles representing <strong>consecutive Fibonacci numbers</strong> collide (1+1, 1+2, 2+3, 3+5, etc.), they merge into the <strong>next Fibonacci number</strong> (2, 3, 5, 8, etc.)!
+      <br>Other combinations (like 2+2 or 1+3) will not merge.
+    </p>
+    <hr>
+    <p>
+    Based on <a href="http://git.io/2048">2048 game</a>. Game concept changed.
+    </p>
+  </div>
+
+  <!-- Include JS files (Order matters!) -->
+  <script src="js/bind_polyfill.js"></script>
+  <script src="js/classlist_polyfill.js"></script>
+  <script src="js/animframe_polyfill.js"></script>
+  <script src="js/keyboard_input_manager.js"></script>
+  <script src="js/html_actuator.js"></script>
+  <script src="js/grid.js"></script>
+  <script src="js/tile.js"></script>
+  <script src="js/local_storage_manager.js"></script>
+  <script src="js/game_manager.js"></script> <!-- Logic is here -->
+  <script src="js/application.js"></script>
+</body>
+</html>
