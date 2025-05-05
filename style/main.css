@@ -1,0 +1,532 @@
+@import url(fonts/clear-sans.css);
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #e8eff1; /* Very Light Cool Grey/Blue */
+  color: #5a646b;      /* Dark Cool Grey Text */
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+}
+
+body {
+  margin: 80px 0; /* Adjust top/bottom margin as needed */
+}
+
+.heading:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+h1.title {
+  font-size: 80px; /* Adjust title size if desired */
+  font-weight: bold;
+  margin: 0;
+  display: block;
+  float: left;
+  color: #5a646b;
+}
+
+@-webkit-keyframes move-up {
+  0% { top: 25px; opacity: 1; }
+  100% { top: -50px; opacity: 0; }
+}
+@-moz-keyframes move-up {
+  0% { top: 25px; opacity: 1; }
+  100% { top: -50px; opacity: 0; }
+}
+@keyframes move-up {
+  0% { top: 25px; opacity: 1; }
+  100% { top: -50px; opacity: 0; }
+}
+
+.scores-container {
+  float: right;
+  text-align: right;
+}
+
+.score-container, .best-container {
+  position: relative;
+  display: inline-block;
+  background: #95a5a6; /* Medium Cool Grey */
+  padding: 15px 25px;
+  font-size: 25px;
+  height: 25px; /* Base height */
+  line-height: 25px; /* Vertically center text in the base height */
+  min-height: 25px; /* Ensure it doesn't shrink */
+  padding-top: 22px; /* Add padding to push text down to center with the 'after' content */
+  font-weight: bold;
+  border-radius: 3px;
+  color: #f0f4f5; /* Light Cool Grey Text */
+  margin-top: 8px;
+  text-align: center;
+}
+
+.score-container:after, .best-container:after {
+  position: absolute;
+  width: 100%;
+  top: 10px;
+  left: 0;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 13px;
+  text-align: center;
+  color: #c8d1d4; /* Lighter Cool Grey */
+}
+
+.score-container .score-addition, .best-container .score-addition {
+  position: absolute;
+  right: 30px;
+  font-size: 25px;
+  line-height: 25px;
+  font-weight: bold;
+  color: rgba(44, 62, 80, 0.9); /* Dark Blue/Grey for score addition */
+  z-index: 100;
+  -webkit-animation: move-up 600ms ease-in;
+  -moz-animation: move-up 600ms ease-in;
+  animation: move-up 600ms ease-in;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.score-container:after {
+  content: "Score";
+}
+
+.best-container:after {
+  content: "Best";
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.65;
+}
+
+a {
+  color: #5a646b;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
+a:hover, a:focus {
+  color: #34495e;
+}
+
+strong.important {
+  text-transform: uppercase;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid #bdc3c7; /* Light Grey */
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+}
+
+@-webkit-keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.game-container {
+  margin-top: 40px;
+  position: relative;
+  padding: 15px; /* Padding around the grid */
+  cursor: default;
+  -webkit-touch-callout: none;
+  -ms-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -ms-touch-action: none;
+  touch-action: none;
+  background: #7f8c8d; /* Medium-Dark Cool Grey/Blue */
+  border-radius: 6px;
+  width: 500px;  /* Container width */
+  height: 500px; /* Container height */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* --- Game Messages (Win/Loss) --- */
+.game-container .game-message {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(127, 140, 141, 0.7); /* Semi-transparent version of game bg */
+  z-index: 100;
+  text-align: center;
+  -webkit-animation: fade-in 800ms ease 1200ms;
+  -moz-animation: fade-in 800ms ease 1200ms;
+  animation: fade-in 800ms ease 1200ms;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.game-container .game-message p {
+  font-size: 60px;
+  font-weight: bold;
+  height: 60px;
+  line-height: 60px;
+  margin-top: 222px; /* Position message text vertically */
+  color: #ecf0f1; /* Very Light Grey */
+}
+
+.game-container .game-message .lower {
+  display: block;
+  margin-top: 59px; /* Space below message text */
+}
+
+.game-container .game-message a { /* Buttons inside message */
+  display: inline-block;
+  background: #95a5a6; /* Same as score boxes */
+  border-radius: 3px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #ecf0f1; /* Light text on button */
+  height: 40px;
+  line-height: 42px; /* Center button text vertically */
+  margin-left: 9px;
+}
+.game-container .game-message a:hover,
+.game-container .game-message a:focus {
+  background: #7f8c8d;
+}
+
+.game-container .game-message a.keep-playing-button {
+  display: none; /* Hidden by default */
+}
+
+.game-container .game-message.game-won {
+   background: rgba(60, 174, 163, 0.6); /* Semi-transparent Teal (Color 4) */
+  color: #f9f6f2; /* Keep light text for win message */
+}
+.game-container .game-message.game-won a.keep-playing-button {
+  display: inline-block; /* Show keep playing button on win */
+}
+
+/* Show message when game is won or over */
+.game-container .game-message.game-won,
+.game-container .game-message.game-over {
+  display: block;
+}
+
+
+/* --- Grid Structure --- */
+.grid-container {
+  position: absolute;
+  z-index: 1;
+}
+
+.grid-row {
+  margin-bottom: 15px; /* Space between rows */
+}
+.grid-row:last-child {
+  margin-bottom: 0;
+}
+.grid-row:after { /* Clearfix */
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.grid-cell {
+  width: 106.25px;  /* Cell width (500 container - 5*15 padding/margin) / 4 */
+  height: 106.25px; /* Cell height */
+  margin-right: 15px; /* Space between cells */
+  float: left;
+  border-radius: 3px;
+  background: rgba(189, 195, 199, 0.35); /* Lighter Transparent Grey */
+}
+.grid-cell:last-child {
+  margin-right: 0;
+}
+
+.tile-container {
+  position: absolute;
+  z-index: 2; /* Tiles appear above the grid cells */
+}
+
+/* --- Tile Positioning (Keep Original - Calculated for 4x4 grid) --- */
+.tile, .tile .tile-inner {
+  width: 106.25px; height: 106.25px; line-height: 106.25px;
+}
+.tile.tile-position-1-1 { transform: translate(0px, 0px); }
+.tile.tile-position-1-2 { transform: translate(0px, 121.25px); }
+.tile.tile-position-1-3 { transform: translate(0px, 242.5px); }
+.tile.tile-position-1-4 { transform: translate(0px, 363.75px); }
+.tile.tile-position-2-1 { transform: translate(121.25px, 0px); }
+.tile.tile-position-2-2 { transform: translate(121.25px, 121.25px); }
+.tile.tile-position-2-3 { transform: translate(121.25px, 242.5px); }
+.tile.tile-position-2-4 { transform: translate(121.25px, 363.75px); }
+.tile.tile-position-3-1 { transform: translate(242.5px, 0px); }
+.tile.tile-position-3-2 { transform: translate(242.5px, 121.25px); }
+.tile.tile-position-3-3 { transform: translate(242.5px, 242.5px); }
+.tile.tile-position-3-4 { transform: translate(242.5px, 363.75px); }
+.tile.tile-position-4-1 { transform: translate(363.75px, 0px); }
+.tile.tile-position-4-2 { transform: translate(363.75px, 121.25px); }
+.tile.tile-position-4-3 { transform: translate(363.75px, 242.5px); }
+.tile.tile-position-4-4 { transform: translate(363.75px, 363.75px); }
+
+
+/* --- Tile Base Appearance & Transitions (Keep Original) --- */
+.tile {
+  position: absolute;
+  box-sizing: border-box;
+  -webkit-transition: transform 100ms ease-in-out;
+  -moz-transition: transform 100ms ease-in-out;
+  transition: transform 100ms ease-in-out;
+}
+
+.tile .tile-inner {
+  border-radius: 3px;
+  text-align: center;
+  font-weight: bold;
+  z-index: 10;
+  background: #eee4da; /* Default fallback */
+  color: #776e65;    /* Default fallback */
+  font-size: 55px;   /* Default size */
+  -webkit-transition: 100ms ease-in-out;
+  -moz-transition: 100ms ease-in-out;
+  transition: 100ms ease-in-out;
+  -webkit-transition-property: background, color, font-size;
+  -moz-transition-property: background, color, font-size;
+  transition-property: background, color, font-size;
+}
+
+/* --- *** Fibonacci Tile Appearance (Paired Colors - KEEP AS IS) *** --- */
+/* Color indicates the pair the tile belongs to. */
+/* Color 1 (Pair 1,1 makes 2) */
+.tile.tile-1 .tile-inner   { background: #eee4da; color: #776e65; font-size: 55px; }
+/* Color 2 (Pair 1,2 makes 3) - Tile 2 */
+.tile.tile-2 .tile-inner   { background: #a7d5e5; color: #f9f6f2; font-size: 55px; } /* Light Blue */
+/* Color 3 (Pair 2,3 makes 5) - Tile 3 */
+.tile.tile-3 .tile-inner   { background: #70b5d3; color: #f9f6f2; font-size: 55px; } /* Medium Blue */
+/* Color 4 (Pair 3,5 makes 8) - Tile 5 */
+.tile.tile-5 .tile-inner   { background: #4cb5ae; color: #f9f6f2; font-size: 55px; } /* Teal */
+/* Color 5 (Pair 5,8 makes 13) - Tile 8 */
+.tile.tile-8 .tile-inner   { background: #63c17e; color: #f9f6f2; font-size: 55px; } /* Green */
+/* Color 6 (Pair 8,13 makes 21) - Tile 13 */
+.tile.tile-13 .tile-inner  { background: #a4d05e; color: #f9f6f2; font-size: 45px; } /* Lime */
+/* Color 7 (Pair 13,21 makes 34) - Tile 21 */
+.tile.tile-21 .tile-inner  { background: #f7e360; color: #776e65; font-size: 45px; } /* Yellow (dark text) */
+/* Color 8 (Pair 21,34 makes 55) - Tile 34 */
+.tile.tile-34 .tile-inner  { background: #f9a44f; color: #f9f6f2; font-size: 45px; } /* Orange */
+/* Color 9 (Pair 34,55 makes 89) - Tile 55 */
+.tile.tile-55 .tile-inner  { background: #f6805b; color: #f9f6f2; font-size: 45px; } /* Red-Orange */
+/* Color 10 (Pair 55,89 makes 144) - Tile 89 */
+.tile.tile-89 .tile-inner  { background: #f06061; color: #f9f6f2; font-size: 45px; } /* Red */
+/* Color 11 (Pair 89,144 makes 233) - Tile 144 */
+.tile.tile-144 .tile-inner { background: #e46ca8; color: #f9f6f2; font-size: 40px; } /* Magenta */
+/* Color 12 (Pair 144, 233 makes 377) - Tile 233 */
+.tile.tile-233 .tile-inner { background: #9b59b6; color: #f9f6f2; font-size: 40px; } /* Purple */
+/* Color 13 (Pair 233, 377 makes 610) - Tile 377 */
+.tile.tile-377 .tile-inner { background: #3498db; color: #f9f6f2; font-size: 40px; } /* Different Blue */
+/* Color 14 (Pair 377, 610 makes 987) - Tile 610 */
+.tile.tile-610 .tile-inner { background: #2ecc71; color: #f9f6f2; font-size: 35px; } /* Different Green */
+/* Fallback for very high numbers */
+.tile.tile-super .tile-inner { color: #f9f6f2; background: #3c3a32; font-size: 30px; }
+/* --- *** END Fibonacci Tile Appearance *** --- */
+
+
+/* --- Tile Animations (Keep Original) --- */
+@-webkit-keyframes appear { /* ... */ }
+@-moz-keyframes appear { /* ... */ }
+@keyframes appear { /* ... */ }
+.tile-new .tile-inner {
+  -webkit-animation: appear 200ms ease 100ms;
+  -moz-animation: appear 200ms ease 100ms;
+  animation: appear 200ms ease 100ms;
+  -webkit-animation-fill-mode: backwards;
+  -moz-animation-fill-mode: backwards;
+  animation-fill-mode: backwards;
+}
+@-webkit-keyframes pop { /* ... */ }
+@-moz-keyframes pop { /* ... */ }
+@keyframes pop { /* ... */ }
+.tile-merged .tile-inner {
+  z-index: 20;
+  -webkit-animation: pop 200ms ease 100ms;
+  -moz-animation: pop 200ms ease 100ms;
+  animation: pop 200ms ease 100ms;
+  -webkit-animation-fill-mode: backwards;
+  -moz-animation-fill-mode: backwards;
+  animation-fill-mode: backwards;
+}
+
+/* --- Above Game Area (Intro Text, Restart Button) --- */
+.above-game:after {
+  content: ""; display: block; clear: both;
+}
+
+.game-intro {
+  float: left;
+  line-height: 42px; /* Match restart button height */
+  margin-bottom: 0;
+}
+
+.restart-button {
+  display: inline-block;
+  background: #95a5a6; /* Same as score boxes */
+  border-radius: 3px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: #ecf0f1; /* Light text */
+  height: 40px;
+  line-height: 42px; /* Vertical align text */
+  text-align: center;
+  float: right;
+  font-weight: bold; /* Ensure boldness */
+}
+.restart-button:hover, .restart-button:focus {
+   background: #7f8c8d; /* Darken slightly */
+   color: #fff;
+}
+
+
+.game-explanation {
+  margin-top: 50px;
+}
+
+
+/* --- Responsive Design (Keep Original Structure, Adjusted Sizes/Colors) --- */
+@media screen and (max-width: 520px) {
+  html, body {
+    font-size: 15px;
+  }
+
+  body {
+    margin: 20px 0;
+    padding: 0 20px; /* Add side padding on small screens */
+  }
+
+  h1.title {
+    font-size: 27px; /* Smaller title */
+    margin-top: 15px;
+  }
+
+  .container {
+    width: 280px; /* Narrower container */
+    margin: 0 auto;
+  }
+
+  .score-container, .best-container {
+    margin-top: 0;
+    padding: 15px 10px; /* Adjust padding */
+    min-width: 40px;
+  }
+  .score-container{ margin-right: 3px;} /* Add slight space between score boxes */
+
+  .heading {
+    margin-bottom: 10px;
+  }
+
+  .game-intro {
+    width: 100%; /* Allow text to wrap, full width */
+    display: block;
+    box-sizing: border-box;
+    line-height: 1.65;
+    margin-bottom: 10px; /* Add space below intro */
+    float: none; /* Stack vertically */
+    text-align: center; /* Center intro text */
+  }
+
+  .restart-button {
+    width: 100%; /* Full width button */
+    padding: 0;
+    display: block;
+    box-sizing: border-box;
+    margin-top: 2px;
+    float: none; /* Stack vertically */
+  }
+
+  .above-game{ height: auto;} /* Adjust height auto for stacked items */
+
+  .game-container {
+    margin-top: 20px; /* Adjust spacing */
+    padding: 10px;    /* Reduce padding */
+    width: 280px;     /* Match container width */
+    height: 280px;    /* Match container height */
+    border-radius: 3px; /* Smaller radius */
+  }
+
+  .grid-container {
+     /* Already positioned absolute */
+  }
+
+  .grid-row {
+    margin-bottom: 10px; /* Reduce space between rows */
+  }
+
+  .grid-cell {
+    width: 57.5px;  /* (280 container - 5*10 padding/margin) / 4 */
+    height: 57.5px;
+    margin-right: 10px; /* Reduce space between cells */
+    border-radius: 3px;
+  }
+
+  .tile-container {
+     /* Already positioned absolute */
+  }
+
+  /* Adjust tile size and positions for smaller grid */
+  .tile, .tile .tile-inner {
+    width: 57.5px; height: 57.5px; line-height: 57.5px;
+  }
+  /* Tile positions */
+  .tile.tile-position-1-1 { transform: translate(0px, 0px); }
+  .tile.tile-position-1-2 { transform: translate(0px, 67.5px); }
+  .tile.tile-position-1-3 { transform: translate(0px, 135px); }
+  .tile.tile-position-1-4 { transform: translate(0px, 202.5px); }
+  .tile.tile-position-2-1 { transform: translate(67.5px, 0px); }
+  .tile.tile-position-2-2 { transform: translate(67.5px, 67.5px); }
+  .tile.tile-position-2-3 { transform: translate(67.5px, 135px); }
+  .tile.tile-position-2-4 { transform: translate(67.5px, 202.5px); }
+  .tile.tile-position-3-1 { transform: translate(135px, 0px); }
+  .tile.tile-position-3-2 { transform: translate(135px, 67.5px); }
+  .tile.tile-position-3-3 { transform: translate(135px, 135px); }
+  .tile.tile-position-3-4 { transform: translate(135px, 202.5px); }
+  .tile.tile-position-4-1 { transform: translate(202.5px, 0px); }
+  .tile.tile-position-4-2 { transform: translate(202.5px, 67.5px); }
+  .tile.tile-position-4-3 { transform: translate(202.5px, 135px); }
+  .tile.tile-position-4-4 { transform: translate(202.5px, 202.5px); }
+
+  /* Adjust font size globally for smaller tiles */
+  .tile .tile-inner {
+    font-size: 30px; /* Smaller base font for small screen tiles */
+  }
+  /* Optional: Further reduce font size for 3-digit numbers if needed */
+   .tile.tile-144 .tile-inner, .tile.tile-233 .tile-inner,
+   .tile.tile-377 .tile-inner, .tile.tile-610 .tile-inner,
+   .tile.tile-super .tile-inner { font-size: 25px; }
+   .tile.tile-610 .tile-inner { font-size: 22px; }
+
+
+  /* Adjust Game Message for smaller screen */
+  .game-container .game-message p {
+    font-size: 30px !important; height: 30px !important; line-height: 30px !important; margin-top: 110px !important;
+  }
+  .game-container .game-message .lower { margin-top: 30px !important; }
+  .game-container .game-message a { padding: 0 10px; height: 36px; line-height: 38px; }
+}
